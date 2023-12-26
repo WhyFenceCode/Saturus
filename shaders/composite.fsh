@@ -35,3 +35,8 @@ vec4 blurImage(in vec2 fragCoord)
     Color /= Quality * Directions - 15.0;
     return Color;
 }
+
+float brightness(in vec4 colorToBrighten){
+    float brightnessToReturn = (0.299*colorToBrighten.x + 0.587*colorToBrighten.y + 0.114*colorToBrighten.z);
+    return brightnessToReturn;
+}
