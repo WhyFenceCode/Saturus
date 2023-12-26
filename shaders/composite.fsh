@@ -40,3 +40,8 @@ float brightness(in vec4 colorToBrighten){
     float brightnessToReturn = (0.299*colorToBrighten.x + 0.587*colorToBrighten.y + 0.114*colorToBrighten.z);
     return brightnessToReturn;
 }
+
+vec4 finalComposite(vec4 normalColor, vec4 blurredColor, float brightness){
+    vec4 finalColor = mix(normalColor, blurredColor, brightness);
+    return finalColor;
+}
