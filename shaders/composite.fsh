@@ -1,7 +1,7 @@
 #version 120
 
 varying vec2 TexCoords;
-uniform sampler2D image;
+uniform sampler2d colortex0;
 const float blurRadius = 1.0; // Set your desired blur radius here
 
 const float PI = 3.14159265358979323846;
@@ -18,7 +18,7 @@ vec4 blurImage(in vec2 fragCoord)
     for (int i = -2; i <= 2; i++) {
         for (int j = -2; j <= 2; j++) {
             float weight = gaussian(float(i), blurRadius) * gaussian(float(j), blurRadius);
-            blur += texture2D(image, TexCoords + vec2(i, j) / 5.0).rgb * weight;
+            blur += texture2D(colortex0, TexCoords + vec2(i, j) / 5.0).rgb * weight;
             total += weight;
         }
     }
