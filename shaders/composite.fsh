@@ -18,7 +18,7 @@ vec4 blurImage(in vec2 fragCoord)
     for (int i = -2; i <= 2; i++) {
         for (int j = -2; j <= 2; j++) {
             float weight = gaussian(float(i), blurRadius) * gaussian(float(j), blurRadius);
-            blur += texture2D(colortex0, TexCoords + vec2(i, j) / 5.0).rgb * weight;
+            blur += texture2D(colortex0, fragCoord + vec2(i, j) / 5.0).rgb * weight;
             total += weight;
         }
     }
@@ -33,4 +33,14 @@ float brightness(in vec4 colorToBrighten){
 vec4 finalComposite(vec4 normalColor, vec4 blurredColor, float brightness){
     vec4 finalColor = mix(normalColor, blurredColor, brightness);
     return finalColor;
+}
+
+void main(){
+    vec4 basecolor = texture2D(colortex0, TexCoords);
+    vec4 bluredcolor = blurImage(TexCoords);
+    float brightness = brightness(bluredcolor);
+
+    vec4 albedo = finalComposite(basecolor, bluredcolor, brightness);
+    /* DRAWBUFFERS:0 */
+    gl_FragData[0] = albedo;
 }
