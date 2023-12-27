@@ -1,7 +1,7 @@
 #version 120
 
 varying vec2 TexCoords;
-uniform sampler2d colortex0;
+uniform sampler2D colortex0;
 const float blurRadius = 1.0; // Set your desired blur radius here
 
 const float PI = 3.14159265358979323846;
