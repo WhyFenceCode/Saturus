@@ -4,7 +4,7 @@ varying vec2 TexCoords;
 uniform sampler2D colortex0;
 
 const float contrast = 0.8f;
-const float brightness = 0.05f;
+const float brightness = 0.01f;
 
 void main(){
     vec4 basecolor = texture2D(colortex0, TexCoords);
