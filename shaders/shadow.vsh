@@ -1,12 +1,13 @@
 #version 120
 
+#include "/distort.glsl"
+
 varying vec2 TexCoords;
-varying float lightDot;
 
 uniform vec3 shadowLightPosition;
 
 void main() {
    gl_Position = ftransform();
    TexCoords = gl_MultiTexCoord0.st;
-   lightDot = dot(normalize(shadowLightPosition), normalize(gl_NormalMatrix * gl_Normal));
+   gl_Position.xyz = distort(gl_Position.xyz);
 }
