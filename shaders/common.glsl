@@ -47,3 +47,13 @@ vec4 hsvToRgb(vec4 color) {
 
    return vec4(r, g, b, color.a);
 }
+
+
+float normalisedInRange(float near, float far, float depth) {
+   if (depth < near || depth > far) {
+       return 0.0;
+   } else {
+       // Normalize the depth value to the range [0, 1]
+       return (depth - near) / (far - near);
+   }
+}
