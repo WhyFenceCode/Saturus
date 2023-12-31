@@ -3,7 +3,7 @@
 varying vec2 TexCoords;
 uniform sampler2D colortex0;
 
-const float contrast = 1.1f;
+const float contrast = 1.2f;
 const float brightness = 0.05f;
 
 void main(){
