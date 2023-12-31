@@ -1,7 +1,7 @@
-const int shadowMapResolution = 1024;
+const int shadowMapResolution = 2048;
 
 vec3 distort(vec3 pos) {
-    float factor = length(pos.xy) + 0.1;
+    float factor = length(pos.xy) + 0.5;
     return vec3(pos.xy / factor, pos.z * 0.5);
 }
 

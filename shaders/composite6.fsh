@@ -47,7 +47,7 @@ void main() {
 
  float shadowDepth = texture2D(shadowtex0, shadowScreenPos.xy).r;
 
- float shadowIntensity = step(shadowDepth, shadowScreenPos.z)/2;
+ float shadowIntensity = step(shadowDepth, shadowScreenPos.z)/3;
 
  // Mix the shadow color with the base color based on the shadow intensity
  vec4 finalColor = mix(baseColor, vec4(0.039, 0.0, 0.059, 1.0), shadowIntensity); // Shadow color is black
