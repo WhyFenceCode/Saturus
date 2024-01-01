@@ -30,7 +30,7 @@ void main() {
   vec3 ndcPos = screenPos * 2 - 1;
   vec3 veiwPos = projectAndDivide(gbufferProjectionInverse, ndcPos);
 
-  vec4 finalColor = vec4(mix(baseColor.xyz, skyColor, normalisedInRange(40.0, far, veiwPos.z)), baseColor.w);
+  vec4 finalColor = vec4(mix(baseColor.xyz, skyColor, normalisedInRange(far/5, far, veiwPos.z)), baseColor.w);
 
   gl_FragColor = finalColor;
 }
