@@ -46,16 +46,16 @@ void main() {
  shadowScreenPos.z -= bias;
 
  float shadowIntensity = 0.0;
- for (int x = -1; x <= 1; ++x) {
-    for (int y = -1; y <= 1; ++y) {
+ for (int x = -2; x <= 2; ++x) {
+    for (int y = -2; y <= 2; ++y) {
         vec2 offset = vec2(x, y) / textureSize(shadowtex0, 0);
         float sampleDepth = texture2D(shadowtex0, shadowScreenPos.xy + offset).r;
         shadowIntensity += step(sampleDepth, shadowScreenPos.z);
     }
  }
- shadowIntensity /= 9.0; // Divide by 9 because we sampled 9 times
+ shadowIntensity /= 25.0; // Divide by 9 because we sampled 9 times
 
- vec4 finalColor = mix(baseColor, vec4(0.039, 0.0, 0.059, 1.0), shadowIntensity/2.4); // Shadow color is black
+ vec4 finalColor = mix(baseColor, vec4(0.039, 0.0, 0.059, 1.0), shadowIntensity/2.5); // Shadow color is black
 
  gl_FragColor = finalColor;
 }
