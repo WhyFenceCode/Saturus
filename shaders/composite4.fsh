@@ -55,7 +55,7 @@ void main() {
  }
  shadowIntensity /= 25.0; // Divide by 9 because we sampled 9 times
 
- vec4 finalColor = mix(baseColor, vec4(0.039, 0.0, 0.059, 1.0), shadowIntensity/2.5); // Shadow color is black
+ vec4 finalColor = mix(baseColor, vec4(0.039, 0.0, 0.059, 1.0), shadowIntensity/2.5); // Shadow color is purple
 
  gl_FragColor = finalColor;
 }
