@@ -57,3 +57,7 @@ float normalisedInRange(float near, float far, float depth) {
        return (depth - near) / (far - near);
    }
 }
+
+float beersLaw(float normalizedNumber) {
+   return(normalizedNumber);
+}
