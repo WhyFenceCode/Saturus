@@ -50,7 +50,7 @@ vec4 hsvToRgb(vec4 color) {
 
 
 float normalisedInRange(float near, float far, float depth) {
-   if (depth < near || depth > far) {
+   if (depth < near || depth >= far) {
        return 0.0;
    } else {
        // Normalize the depth value to the range [0, 1]
