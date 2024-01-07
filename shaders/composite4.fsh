@@ -24,6 +24,7 @@ vec3 projectAndDivide (mat4 projectionMatrix, vec3 position) {
 
 varying vec2 TexCoords;
 varying float lightDot;
+varying float BlockID;
 
 void main() {
  vec4 baseColor = texture(colortex0, TexCoords);
@@ -57,7 +58,7 @@ void main() {
 
  vec4 finalColor = baseColor;
 
- if (depth != 1.0) finalColor = mix(baseColor, vec4(0.039, 0.0, 0.059, 1.0), shadowIntensity/2.5); // Shadow color is purple
+ if (depth != 1.0 && BlockID != 10.0) finalColor = mix(baseColor, vec4(0.039, 0.0, 0.059, 1.0), shadowIntensity/2.5); // Shadow color is purple
 
  gl_FragColor = finalColor;
 }
