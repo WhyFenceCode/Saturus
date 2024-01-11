@@ -11,7 +11,8 @@ void main() {
     // Use the texture matrix instead of dividing by 15 to maintain compatiblity for each version of Minecraft
     LightmapCoords = mat2(gl_TextureMatrix[1]) * gl_MultiTexCoord1.st;
     // Transform them into the [0, 1] range
-    LightmapCoords = (LightmapCoords * 33.05f / 32.0f) - (1.05f / 32.0f);
+    LightmapCoords = LightmapCoords * (16.0/15.0) - (16.0/15.0/32.0);
     Normal = gl_NormalMatrix * gl_Normal;
     Color = gl_Color;
+    gl_Position = ftransform();
 }
