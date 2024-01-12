@@ -80,10 +80,10 @@ void main() {
 
  float lightIntensity = mix(shadowIntensity, 0, Lightmap.x * Lightmap.x * Lightmap.x);
 
- if (depth != 1.0 && BlockID != 10.0) finalColor = mix(finalColor, vec4(0.039, 0.0, 0.059, 1.0), shadowIntensity/2.5); // Shadow color is purple
+ if (depth != 1.0 && BlockID != 10.0) finalColor = mix(finalColor, vec4(0.039, 0.0, 0.059, 1.0), lightIntensity/2.5); // Shadow color is purple
  if (depth != 1.0 && BlockID != 10.0) finalColor = mix(finalColor, vec4(1, 0.725, 0.0, 1.0), Lightmap.x * Lightmap.x * Lightmap.x / 15); // Torch Light is orange
 
-  if (depth != 1.0 && BlockID != 10.0) finalColor = mix(finalColor, texture(colortex15, vec2(skyBrightness(worldTime), 0.0)), (1 - shadowIntensity) * texture(colortex15, vec2(skyBrightness(worldTime), 0.9)).r);
+  if (depth != 1.0 && BlockID != 10.0) finalColor = mix(finalColor, texture(colortex15, vec2(skyBrightness(worldTime), 0.0)), (1 - lightIntensity) * texture(colortex15, vec2(skyBrightness(worldTime), 0.9)).r);
  
  gl_FragColor = finalColor;
 }
