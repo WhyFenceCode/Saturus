@@ -6,6 +6,8 @@ uniform sampler2D colortex0;
 const float contrast = 1.2f;
 const float brightness = 0.09f;
 
+const float ambientOcclusionLevel = 1.0f;
+
 void main(){
     vec4 basecolor = texture2D(colortex0, TexCoords);
 
