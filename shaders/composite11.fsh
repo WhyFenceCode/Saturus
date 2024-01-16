@@ -4,6 +4,8 @@ uniform sampler2D colortex9;
 uniform sampler2D colortex0;
 uniform sampler2D depthtex0;
 
+uniform float far;
+
 uniform mat4 gbufferProjectionInverse;
 
 varying vec2 TexCoords;
@@ -18,9 +20,9 @@ void main() {
     vec3 ndcpos = screenpos * 2.0 - 1.0;
     vec3 veiwPos = projectAndDivide(gbufferProjectionInverse, ndcpos);
 
-    float depth = length(veiwPos.z);
+    float depth = length(veiwPos.z)/far;
 
-    vec4 color = mix(texture2D(colortex0, TexCoords), texture2D(colortex9, TexCoords), depth);
+    vec4 color = texture2D(colortex0, TexCoords);
 
     /* DRAWBUFFERS:0 */
     gl_FragData[0] = color;
