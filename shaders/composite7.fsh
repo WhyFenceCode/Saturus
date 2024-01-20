@@ -4,6 +4,7 @@
 
 uniform sampler2D colortex0; // The base color texture
 uniform sampler2D colortex2; // The lightmap texture
+uniform sampler2D colortex3; // The BlockID Buffer
 uniform sampler2D shadowtex0; // The shadow map
 uniform sampler2D depthtex0; // The depth buffer
 uniform sampler2D sunlightLUT; // The Sunlight LUT
@@ -80,10 +81,10 @@ void main() {
 
  float lightIntensity = mix(shadowIntensity, 0, Lightmap.x * Lightmap.x * Lightmap.x);
 
- if (depth != 1.0 && BlockID != 10.0) finalColor = mix(finalColor, vec4(0.039, 0.0, 0.059, 1.0), lightIntensity/2.5); // Shadow color is purple
- if (depth != 1.0 && BlockID != 10.0) finalColor = mix(finalColor, vec4(1, 0.725, 0.0, 1.0), Lightmap.x * Lightmap.x * Lightmap.x / 15); // Torch Light is orange
+ if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0) finalColor = mix(finalColor, vec4(0.039, 0.0, 0.059, 1.0), lightIntensity/2.5); // Shadow color is purple
+ if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0) finalColor = mix(finalColor, vec4(1, 0.725, 0.0, 1.0), Lightmap.x * Lightmap.x * Lightmap.x / 15); // Torch Light is orange
 
- if (depth != 1.0 && BlockID != 10.0) finalColor = finalColor + (texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.0)) *((1 - lightIntensity) * texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.9)).r));
+ if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0) finalColor = finalColor + (texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.0)) *((1 - lightIntensity) * texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.9)).r));
  
  gl_FragColor = finalColor;
 }

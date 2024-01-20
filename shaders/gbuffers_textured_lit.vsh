@@ -4,6 +4,9 @@ varying vec2 TexCoords;
 varying vec2 LightmapCoords;
 varying vec3 Normal;
 varying vec4 Color;
+varying float BlockID;
+
+in vec4 mc_Entity;
 
 void main() {
     // Assign values to varying variables
@@ -15,4 +18,5 @@ void main() {
     Normal = gl_NormalMatrix * gl_Normal;
     Color = gl_Color;
     gl_Position = ftransform();
+    BlockID = mc_Entity.x;
 }
