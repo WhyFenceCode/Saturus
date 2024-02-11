@@ -1,8 +1,4 @@
 #version 120
+#define VERTEX_SHADER
 
-varying vec2 TexCoords;
-
-void main() {
-    gl_Position = ftransform();
-    TexCoords = gl_MultiTexCoord0.st;
-}
+#include "programs/common_vertex.glsl"
