@@ -1,8 +1,4 @@
 #version 120
+#define FRAGMENT_SHADER
 
-varying vec2 uv;
-uniform sampler2D gtexture;
-
-void main() {
-  gl_FragColor = texture2D(gtexture, uv);
-}
+#include "programs/shadow_mapper.glsl"
