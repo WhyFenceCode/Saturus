@@ -67,11 +67,11 @@ uniform float frameTimeCounter;
 uniform float sunAngle;
 uniform int worldDay;
 
-vec4 getStanderdSeasonColor( int worldDay ){
+// length of each season in minecraft days
+// for example, at 1, an entire season is 1 day long
+const int SeasonLength = 1;
 
-	// length of each season in minecraft days
-	// for example, at 1, an entire season is 1 day long
-	int SeasonLength = 1; 
+vec4 getStanderdSeasonColor( int worldDay ){
 
 	// loop the year. multiply the season length by the 4 seasons to create a years time.
 	float YearLoop = mod(worldDay + SeasonLength, SeasonLength * 4);
@@ -99,11 +99,7 @@ vec4 getStanderdSeasonColor( int worldDay ){
 }
 
 vec4 getSpruceSeasonColor( int worldDay ){
-
-	// length of each season in minecraft days
-	// for example, at 1, an entire season is 1 day long
-	int SeasonLength = 1; 
-
+    
 	// loop the year. multiply the season length by the 4 seasons to create a years time.
 	float YearLoop = mod(worldDay + SeasonLength, SeasonLength * 4);
 
