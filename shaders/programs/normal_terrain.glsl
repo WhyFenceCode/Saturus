@@ -26,7 +26,7 @@ void main() {
     Normal = gl_NormalMatrix * gl_Normal;
     Color = gl_Color;
     BlockID = mc_Entity.x;
-    if (mc_Entity.x == 30.0){
+    if (mc_Entity.x == 30.0 || mc_Entity.x == 40.0 || mc_Entity.x == 50.0){
         vec3 viewpos = (gl_ModelViewMatrix * gl_Vertex).xyz;
         vec3 feetPlayerpos = (gbufferModelViewInverse * vec4(viewpos, 1.0)).xyz;
         vec3 worldpos = feetPlayerpos + cameraPosition;
@@ -61,10 +61,85 @@ varying float BlockID;
 
 // The texture atlas
 uniform sampler2D texture;
+uniform sampler2D leavesLUT;
+
+uniform float frameTimeCounter;
+uniform float sunAngle;
+uniform int worldDay;
+
+vec4 getStanderdSeasonColor( int worldDay ){
+
+	// length of each season in minecraft days
+	// for example, at 1, an entire season is 1 day long
+	int SeasonLength = 1; 
+
+	// loop the year. multiply the season length by the 4 seasons to create a years time.
+	float YearLoop = mod(worldDay + SeasonLength, SeasonLength * 4);
+
+	// the time schedule for each season
+	float SummerTime = clamp(YearLoop                  ,0, SeasonLength) / SeasonLength;
+	float AutumnTime = clamp(YearLoop - SeasonLength   ,0, SeasonLength) / SeasonLength;
+	float WinterTime = clamp(YearLoop - SeasonLength*2 ,0, SeasonLength) / SeasonLength;
+	float SpringTime = clamp(YearLoop - SeasonLength*3 ,0, SeasonLength) / SeasonLength;
+
+	// colors for things
+	vec4 SummerCol = texture(leavesLUT, vec2(0.251, 0.0));
+	vec4 AutumnCol = texture(leavesLUT, vec2(0.501, 0.0));
+	vec4 WinterCol = texture(leavesLUT, vec2(0.751, 0.0));
+	vec4 SpringCol = texture(leavesLUT, vec2(0.0, 0.0));
+
+	// lerp all season colors together
+	vec4 SummerToFall =   mix(SummerCol,      AutumnCol, SummerTime);
+	vec4 FallToWinter =   mix(SummerToFall,   WinterCol, AutumnTime);
+	vec4 WinterToSpring = mix(FallToWinter,   SpringCol, WinterTime);
+	vec4 SpringToSummer = mix(WinterToSpring, SummerCol, SpringTime);
+
+	// return the final color of the year, because it contains all the other colors, at some point.
+	return SpringToSummer;
+}
+
+vec4 getSpruceSeasonColor( int worldDay ){
+
+	// length of each season in minecraft days
+	// for example, at 1, an entire season is 1 day long
+	int SeasonLength = 1; 
+
+	// loop the year. multiply the season length by the 4 seasons to create a years time.
+	float YearLoop = mod(worldDay + SeasonLength, SeasonLength * 4);
+
+	// the time schedule for each season
+	float SummerTime = clamp(YearLoop                  ,0, SeasonLength) / SeasonLength;
+	float AutumnTime = clamp(YearLoop - SeasonLength   ,0, SeasonLength) / SeasonLength;
+	float WinterTime = clamp(YearLoop - SeasonLength*2 ,0, SeasonLength) / SeasonLength;
+	float SpringTime = clamp(YearLoop - SeasonLength*3 ,0, SeasonLength) / SeasonLength;
+
+	// colors for things
+	vec4 SummerCol = texture(leavesLUT, vec2(0.251, 0.9));
+	vec4 AutumnCol = texture(leavesLUT, vec2(0.501, 0.9));
+	vec4 WinterCol = texture(leavesLUT, vec2(0.751, 0.9));
+	vec4 SpringCol = texture(leavesLUT, vec2(0.0, 0.9));
+
+	// lerp all season colors together
+	vec4 SummerToFall =   mix(SummerCol,      AutumnCol, SummerTime);
+	vec4 FallToWinter =   mix(SummerToFall,   WinterCol, AutumnTime);
+	vec4 WinterToSpring = mix(FallToWinter,   SpringCol, WinterTime);
+	vec4 SpringToSummer = mix(WinterToSpring, SummerCol, SpringTime);
+
+	// return the final color of the year, because it contains all the other colors, at some point.
+	return SpringToSummer;
+}
 
 void main(){
 
-    vec4 Albedo = texture2D(texture, TexCoords) * Color;
+    vec4 mixedColor = Color;
+    if (BlockID == 30.0){
+        mixedColor = mix(Color, getStanderdSeasonColor(worldDay), 0.5);
+    }
+    if (BlockID == 40.0){
+        mixedColor = mix(Color, getSpruceSeasonColor(worldDay), 0.5);
+    }
+
+    vec4 Albedo = texture2D(texture, TexCoords) * mixedColor;
     /* DRAWBUFFERS:0123 */
     // Write the values to the color textures
     gl_FragData[0] = Albedo;
