@@ -71,10 +71,12 @@ uniform int worldDay;
 // for example, at 1, an entire season is 1 day long
 const int SeasonLength = 1;
 
+
+//Season Functions by Xonk
 vec4 getStanderdSeasonColor( int worldDay ){
 
 	// loop the year. multiply the season length by the 4 seasons to create a years time.
-	float YearLoop = mod(worldDay + SeasonLength, SeasonLength * 4);
+	float YearLoop = mod(worldDay, SeasonLength * 4);
 
 	// the time schedule for each season
 	float SummerTime = clamp(YearLoop                  ,0, SeasonLength) / SeasonLength;
@@ -99,9 +101,9 @@ vec4 getStanderdSeasonColor( int worldDay ){
 }
 
 vec4 getSpruceSeasonColor( int worldDay ){
-    
+
 	// loop the year. multiply the season length by the 4 seasons to create a years time.
-	float YearLoop = mod(worldDay + SeasonLength, SeasonLength * 4);
+	float YearLoop = mod(worldDay, SeasonLength * 4);
 
 	// the time schedule for each season
 	float SummerTime = clamp(YearLoop                  ,0, SeasonLength) / SeasonLength;
@@ -129,10 +131,10 @@ void main(){
 
     vec4 mixedColor = Color;
     if (BlockID == 30.0){
-        mixedColor = mix(Color, getStanderdSeasonColor(worldDay), 0.5);
+        mixedColor = mix(Color, getStanderdSeasonColor(worldDay), 0.8);
     }
     if (BlockID == 40.0){
-        mixedColor = mix(Color, getSpruceSeasonColor(worldDay), 0.5);
+        mixedColor = mix(Color, getSpruceSeasonColor(worldDay), 0.8);
     }
 
     vec4 Albedo = texture2D(texture, TexCoords) * mixedColor;
