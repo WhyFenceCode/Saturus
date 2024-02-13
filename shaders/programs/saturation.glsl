@@ -6,7 +6,7 @@
 varying vec2 TexCoords;
 uniform sampler2D colortex0;
 
-const float saturation = 1.2f;
+const float saturation = 1.4;
 
 void main(){
     vec4 basecolor = texture2D(colortex0, TexCoords);
