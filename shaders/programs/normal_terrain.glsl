@@ -26,7 +26,7 @@ void main() {
     Normal = gl_NormalMatrix * gl_Normal;
     Color = gl_Color;
     BlockID = mc_Entity.x;
-    if (mc_Entity.x == 30.0 || mc_Entity.x == 40.0 || mc_Entity.x == 50.0){
+    if (mc_Entity.x == 30.0 || mc_Entity.x == 40.0 || mc_Entity.x == 50.0 || mc_Entity.x == 60){
         vec3 viewpos = (gl_ModelViewMatrix * gl_Vertex).xyz;
         vec3 feetPlayerpos = (gbufferModelViewInverse * vec4(viewpos, 1.0)).xyz;
         vec3 worldpos = feetPlayerpos + cameraPosition;
@@ -69,10 +69,10 @@ uniform int worldDay;
 
 // length of each season in minecraft days
 // for example, at 1, an entire season is 1 day long
-const int SeasonLength = 1;
+const int SeasonLength = 5;
 
 
-//Season Functions by Xonk
+//Season functions slightly modified based on functions by Xonk
 vec4 getStanderdSeasonColor( int worldDay ){
 
 	// loop the year. multiply the season length by the 4 seasons to create a years time.
