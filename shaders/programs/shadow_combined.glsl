@@ -103,16 +103,12 @@ void main() {
 
  vec4 finalColor = baseColor;
 
- float mixer = mix(1.2, 1.8, eyeBrightnessSmooth.y/15);
- mixer = mix(mixer, 2.1, eyeBrightnessSmooth.x/15);
- mixer = mix(2.1, mixer, skyBrightness(worldTime));
-
  float lightIntensity = mix(shadowIntensity, 0, Lightmap.x * Lightmap.x * Lightmap.x);
 
  if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0 && sunAngle < 0.5){
-     finalColor = mix(finalColor, vec4(0.071, 0.0, 0.188, 1.0), lightIntensity/mixer); // Shadow color is purple
+     finalColor = mix(finalColor, vec4(0.071, 0.0, 0.188, 1.0), lightIntensity/1.8); // Shadow color is purple
  }else if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0){
-    finalColor = mix(finalColor, vec4(0.071, 0.0, 0.188, 1.0), 1/mixer); // Night color is purple
+    finalColor = mix(finalColor, vec4(0.071, 0.0, 0.188, 1.0), 1/1.8); // Night color is purple
  }
  if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0) finalColor = mix(finalColor, vec4(1, 0.725, 0.0, 1.0), Lightmap.x * Lightmap.x * Lightmap.x / 15); // Torch Light is orange
 
