@@ -16,6 +16,15 @@ uniform float thunderStrength;
 uniform float far;
 uniform float near;
 
+uniform int worldTime;
+
+const float pi = 3.1415926535;
+
+float skyBrightness(int time) {
+    float squareWave = 0.5 * (sin(pi/12000*(time+500))/sin(pi/8) + 1);
+    return clamp(squareWave, 0, 1);
+}
+
 float linearizeDepthFast(float depth) {
     return (near * far) / (depth * (near - far) + far)/far;
 }
@@ -45,6 +54,8 @@ void main() {
     float rainforstreangth = mix(1.1, 3, thunderStrength);
 
     float fogstreangth = mix(0.5, rainforstreangth, rainStrength);
+
+    fogstreangth = mix(2.1, fogstreangth, skyBrightness(worldTime));
 
     vec4 finalColor = mix(baseColor, fog, 1-beerLambertVisibility(fogstreangth, lineardeapth));
 

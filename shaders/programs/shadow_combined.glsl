@@ -43,7 +43,7 @@ uniform vec3 shadowLightPosition;
 uniform int worldTime;
 
 uniform float sunAngle;
-uniform ivec2 eyeBrightness;
+uniform ivec2 eyeBrightnessSmooth;
 
 const float pi = 3.1415926535;
 
@@ -103,8 +103,9 @@ void main() {
 
  vec4 finalColor = baseColor;
 
- float mixer = mix(1.2, 2.1, eyeBrightness.y/15);
- mixer = mix(mixer, 2.1, eyeBrightness.x/15);
+ float mixer = mix(1.2, 1.8, eyeBrightnessSmooth.y/15);
+ mixer = mix(mixer, 2.1, eyeBrightnessSmooth.x/15);
+ mixer = mix(2.1, mixer, skyBrightness(worldTime));
 
  float lightIntensity = mix(shadowIntensity, 0, Lightmap.x * Lightmap.x * Lightmap.x);
 
