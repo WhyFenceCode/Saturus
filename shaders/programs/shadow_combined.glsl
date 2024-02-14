@@ -42,6 +42,9 @@ uniform mat4 shadowProjectionInverse;
 uniform vec3 shadowLightPosition;
 uniform int worldTime;
 
+uniform float sunAngle;
+uniform ivec2 eyeBrightness;
+
 const float pi = 3.1415926535;
 
 float skyBrightness(int time) {
@@ -100,12 +103,19 @@ void main() {
 
  vec4 finalColor = baseColor;
 
+ float mixer = mix(1.2, 2.1, eyeBrightness.y/15);
+ mixer = mix(mixer, 2.1, eyeBrightness.x/15);
+
  float lightIntensity = mix(shadowIntensity, 0, Lightmap.x * Lightmap.x * Lightmap.x);
 
- if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0) finalColor = mix(finalColor, vec4(0.071, 0.0, 0.188, 1.0), lightIntensity/2.3); // Shadow color is purple
+ if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0 && sunAngle < 0.5){
+     finalColor = mix(finalColor, vec4(0.071, 0.0, 0.188, 1.0), lightIntensity/mixer); // Shadow color is purple
+ }else if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0){
+    finalColor = mix(finalColor, vec4(0.071, 0.0, 0.188, 1.0), 1/mixer); // Night color is purple
+ }
  if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0) finalColor = mix(finalColor, vec4(1, 0.725, 0.0, 1.0), Lightmap.x * Lightmap.x * Lightmap.x / 15); // Torch Light is orange
 
- if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0) finalColor = finalColor + (texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.0)) *((1 - lightIntensity) * texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.9)).r));
+ if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0 && sunAngle < 0.5) finalColor = finalColor + (texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.0)) *((1 - lightIntensity) * texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.9)).r)); //Add Sunlight
  
  gl_FragColor = finalColor;
 }
