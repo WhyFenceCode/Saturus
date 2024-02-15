@@ -55,7 +55,7 @@ void main() {
 
     float fogstreangth = mix(0.5, rainforstreangth, rainStrength);
 
-    fogstreangth = mix(2.1, fogstreangth, skyBrightness(worldTime));
+    if (depth != 1.0) fogstreangth = mix(2.1, fogstreangth, skyBrightness(worldTime));
 
     vec4 finalColor = mix(baseColor, fog, 1-beerLambertVisibility(fogstreangth, lineardeapth));
 
