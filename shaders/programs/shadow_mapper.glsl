@@ -4,8 +4,8 @@
 
 varying vec2 TexCoords;
 varying vec2 uv;
-const float sunPathRotation = 45.0f;
-const float shadowDistance = 200.0f;
+const float sunPathRotation = 45.0;
+const float shadowDistance = 200.0;
 
 uniform vec3 shadowLightPosition;
 

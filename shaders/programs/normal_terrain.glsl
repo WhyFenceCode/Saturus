@@ -1,6 +1,6 @@
 //Vertex Shader Only//
 /////////////////////
-#define WAVING_LEVES  // Waving Leaves
+#define WAVING_LEAVES  // Waving Leaves
 
 #ifdef VERTEX_SHADER
 
@@ -28,7 +28,7 @@ void main() {
     Normal = gl_NormalMatrix * gl_Normal;
     Color = gl_Color;
     BlockID = mc_Entity.x;
-	#ifdef WAVING_LEVES
+	#ifdef WAVING_LEAVES
     if (mc_Entity.x == 30.0 || mc_Entity.x == 40.0 || mc_Entity.x == 50.0 || mc_Entity.x == 60){
         vec3 viewpos = (gl_ModelViewMatrix * gl_Vertex).xyz;
         vec3 feetPlayerpos = (gbufferModelViewInverse * vec4(viewpos, 1.0)).xyz;
@@ -48,7 +48,7 @@ void main() {
         gl_Position = ftransform();
     }
 	#endif
-	#ifndef WAVING_LEVES
+	#ifndef WAVING_LEAVES
 	gl_Position = ftransform();
 	#endif
 }

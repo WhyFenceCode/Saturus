@@ -11,6 +11,7 @@ varying vec3 Normal;
 varying vec4 Color;
 varying float BlockID;
 
+uniform float frameTimeCounter;
 uniform float sunAngle;
 uniform vec3 cameraPosition;
 uniform mat4 gbufferModelView;
@@ -23,7 +24,7 @@ void main() {
     vec3 feetPlayerpos = (gbufferModelViewInverse * vec4(viewpos, 1.0)).xyz;
     vec3 worldpos = feetPlayerpos + cameraPosition;
 
-    worldpos.y += (generateWave(worldpos.x, worldpos.z, sunAngle * 300.0))/20;
+    worldpos.y += (generateWave(worldpos.x/3, worldpos.z/3, frameTimeCounter/800 * 300.0))/30;
 
     worldpos.y -= 0.1;
 

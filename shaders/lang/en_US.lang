@@ -1,0 +1,188 @@
+#Custom Values
+
+#SATU
+option.SATU=Saturus
+value.SATU.0=§aWhyFencePost
+value.SATU.1=§bWhyFencePost
+value.SATU.2=§cWhyFencePost
+value.SATU.3=§dWhyFencePost
+value.SATU.4=§eWhyFencePost
+value.SATU.5=§fWhyFencePost
+option.CMPR.comment=Saturus is a labour of love!
+
+#VERSION
+option.VERSION=InDev
+value.VERSION.0=§b1.1.0
+value.VERSION.1=§b1.1.0
+value.VERSION.2=§b1.1.0
+value.VERSION.3=§b1.1.0
+value.VERSION.4=§b1.1.0
+value.VERSION.5=§b1.1.0
+option.VERSION.comment=Current Version
+
+
+#Screens
+
+#PREFERENCE_SETTINGS
+screen.PREFERENCE_SETTINGS=Preference Settings
+screen.PREFERENCE_SETTINGS.comment=Settings related to the look and feel of the shader and the world.
+
+
+#Under PREFERENCE_SETTINGS
+#ATMOSPHERE_SETTINGS
+screen.ATMOSPHERE_SETTINGS=Atmosphere
+screen.ATMOSPHERE_SETTINGS.comment=Settings related the the atmosphere and its effects: Fog, Rain, Seasons, Waving Objects.
+
+#LIGHT_SHADOW_SETTINGS
+screen.LIGHT_SHADOW_SETTINGS=Light and Shadows
+screen.LIGHT_SHADOW_SETTINGS.comment=Settings related to lighting and shadows.
+
+#CAMERA_SETTINGS
+screen.CAMERA_SETTINGS=Camera
+screen.CAMERA_SETTINGS.comment=Settings related to camera, veiw, and post proccesing.
+
+
+#Under ATMOSPHERE_SETTINGS
+#FOG_SETTINGS
+screen.FOG_SETTINGS=Fog
+screen.FOG_SETTINGS.comment=Anything related to fog.
+
+#NETHER_FOG_SETTINGS
+screen.NETHER_FOG_SETTINGS=Nether Fog
+screen.NETHER_FOG_SETTINGS.comment=Nether fog settings.
+
+#OVERWORLD_FOG_SETTINGS
+screen.OVERWORLD_FOG_SETTINGS=OverWorld Fog
+screen.OVERWORLD_FOG_SETTINGS.comment=OverWorld fog settings.
+
+#RAIN_SETTINGS
+screen.RAIN_SETTINGS=Rain
+screen.RAIN_SETTINGS.comment=Anything related to rain.
+
+#SEASON_SETTINGS
+screen.SEASON_SETTINGS=Seasons
+screen.SEASON_SETTINGS.comment=Anything related to seasons.
+
+#WAVING_SETTINGS
+screen.WAVING_SETTINGS=Waving
+screen.WAVING_SETTINGS.comment=Anything related to waving blocks and items.
+
+
+#Under LIGHT_SHADOW_SETTINGS
+#LIGHTING_SETTINGS
+screen.LIGHTING_SETTINGS=Lighting
+screen.LIGHTING_SETTINGS.comment=Anything related to lighting and light color.
+
+#TORCH_SETTINGS
+screen.TORCH_SETTINGS=Torches
+screen.TORCH_SETTINGS.comment=Torch settings and color.
+
+#SHADOW_SETTINGS
+screen.SHADOW_SETTINGS=Shadows
+screen.SHADOW_SETTINGS.comment=Anything related to shadows.
+
+
+#Under CAMERA_SETTINGS
+#POST_SETTINGS
+screen.POST_SETTINGS=Post
+screen.POST_SETTINGS.comment=Post proccesing and after effects.
+
+
+
+
+
+
+
+#Settings
+
+#Shadows
+option.SHADOWS=Shadows
+option.SHADOWS.comment=Toggles Shadows
+
+option.SHADOW_AMBIENCE=Shadow Ambience
+option.SHADOW_AMBIENCE.comment=Changes ambient light in shadows.
+
+option.SHADOW_MAP_RES=Shadow Map Quality
+value.SHADOW_MAP_RES.256=Low
+value.SHADOW_MAP_RES.512=Medium
+value.SHADOW_MAP_RES.1024=Normal
+value.SHADOW_MAP_RES.2048=High
+value.SHADOW_MAP_RES.4096=Ultra
+value.SHADOW_MAP_RES.8192=Extreme
+option.SHADOW_MAP_RES.comment=The resolution of the shadow map.
+
+option.SHADOW_COLOR_R=§cShadow Color R
+option.SHADOW_COLOR_R.comment=Red channel of shadow color.
+
+option.SHADOW_COLOR_G=§aShadow Color G
+option.SHADOW_COLOR_G.comment=Green channel of shadow color.
+
+option.SHADOW_COLOR_B=§bShadow Color B
+option.SHADOW_COLOR_B.comment=Blue channel of shadow color.
+
+#Post
+option.CONTRAST=Contrast
+option.CONTRAST.comment=Changes the contrast of the world in a post shader.
+
+option.BRIGHTNESS=Brightness
+option.BRIGHTNESS.comment=Changes the brightness of the world in a post shader.
+
+option.SATURATION=Saturation
+option.SATURATION.comment=Changes the saturation of the world in a post shader.
+
+option.AMBIENT_OCCLUSION=Ambient Occlusion
+option.AMBIENT_OCCLUSION.comment=Changes the ambient of the world.
+
+#Nether Fog
+option.NETHER_FOG_STRENGTH=Fog Strength
+option.NETHER_FOG_STRENGTH.comment=Changes the strength of the nether fog.
+
+option.NETHER_FOG_TINT_LEVEL=Tint Strength
+option.NETHER_FOG_TINT_LEVEL.comment=Changes the level of tint in the nether fog.
+
+#Overworld Fog
+option.OVERWORLD_FOG_STRENGTH=Fog Strength
+option.OVERWORLD_FOG_STRENGTH.comment=Changes the strength of normal overWorld fog.
+
+option.RAIN_FOG_STRENGTH=Rain Fog Strength
+option.RAIN_FOG_STRENGTH.comment=Changes the strength of rainy overWorld fog.
+
+option.THUNDER_FOG_STRENGTH=Thunder Fog Strength
+option.THUNDER_FOG_STRENGTH.comment=Changes the strength of thunderstorm overWorld fog.
+
+#Torch Light
+option.TORCH_COLOR_R=§cTorch Light R
+option.TORCH_COLOR_R.comment=Red channel of torch light color.
+
+option.TORCH_COLOR_G=§aTorch Light G
+option.TORCH_COLOR_G.comment=Green channel of torch light color.
+
+option.TORCH_COLOR_B=§bTorch Light B
+option.TORCH_COLOR_B.comment=Blue channel of torch light color.
+
+#Rain Color
+option.RAIN_COLOR_R=§cRain Color R
+option.RAIN_COLOR_R.comment=Red channel of rain color.
+
+option.RAIN_COLOR_G=§aRain Color G
+option.RAIN_COLOR_G.comment=Green channel of rain color.
+
+option.RAIN_COLOR_B=§bRain Color B
+option.RAIN_COLOR_B.comment=Blue channel of rain color.
+
+option.RAIN_COLOR_A=Rain Color A
+option.RAIN_COLOR_A.comment=Alpha (Transperancy) channel of rain color.
+
+#Waving Objects
+option.WAVING_LEAVES=Waving Leaves
+option.WAVING_LEAVES.comment=On/Off for leaf waving.
+
+option.WAVES=Water Waves
+option.WAVES.comment=§cEXPERIMENTAL - §fOn/Off for water waving.
+
+#Seasons
+option.SEASONS=Seasons
+option.SEASONS.comment=On/Off for seasons.
+
+option.SEASON_LEANGTH=Season Length
+option.SEASON_LEANGTH.comment=Time in days per season.
