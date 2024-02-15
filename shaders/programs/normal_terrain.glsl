@@ -1,5 +1,7 @@
 //Vertex Shader Only//
 /////////////////////
+#define WAVING_LEVES  // Waving Leaves
+
 #ifdef VERTEX_SHADER
 
 varying vec2 TexCoords;
@@ -26,6 +28,7 @@ void main() {
     Normal = gl_NormalMatrix * gl_Normal;
     Color = gl_Color;
     BlockID = mc_Entity.x;
+	#ifdef WAVING_LEVES
     if (mc_Entity.x == 30.0 || mc_Entity.x == 40.0 || mc_Entity.x == 50.0 || mc_Entity.x == 60){
         vec3 viewpos = (gl_ModelViewMatrix * gl_Vertex).xyz;
         vec3 feetPlayerpos = (gbufferModelViewInverse * vec4(viewpos, 1.0)).xyz;
@@ -44,12 +47,19 @@ void main() {
     } else {
         gl_Position = ftransform();
     }
+	#endif
+	#ifndef WAVING_LEVES
+	gl_Position = ftransform();
+	#endif
 }
 
 #endif
 
 //Fragment Shader//
 //////////////////
+#define SEASONS  // Seasons
+#define SEASON_LEANGTH 5.0  // Season Length [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20]
+
 #ifdef FRAGMENT_SHADER
 
 varying vec2 TexCoords;
@@ -67,22 +77,18 @@ uniform float frameTimeCounter;
 uniform float sunAngle;
 uniform int worldDay;
 
-// length of each season in minecraft days
-// for example, at 1, an entire season is 1 day long
-const int SeasonLength = 5;
-
 
 //Season functions slightly modified based on functions by Xonk
 vec4 getStanderdSeasonColor( int worldDay ){
 
 	// loop the year. multiply the season length by the 4 seasons to create a years time.
-	float YearLoop = mod(worldDay, SeasonLength * 4);
+	float YearLoop = mod(worldDay, SEASON_LEANGTH * 4);
 
 	// the time schedule for each season
-	float SummerTime = clamp(YearLoop                  ,0, SeasonLength) / SeasonLength;
-	float AutumnTime = clamp(YearLoop - SeasonLength   ,0, SeasonLength) / SeasonLength;
-	float WinterTime = clamp(YearLoop - SeasonLength*2 ,0, SeasonLength) / SeasonLength;
-	float SpringTime = clamp(YearLoop - SeasonLength*3 ,0, SeasonLength) / SeasonLength;
+	float SummerTime = clamp(YearLoop                  ,0, SEASON_LEANGTH) / SEASON_LEANGTH;
+	float AutumnTime = clamp(YearLoop - SEASON_LEANGTH   ,0, SEASON_LEANGTH) / SEASON_LEANGTH;
+	float WinterTime = clamp(YearLoop - SEASON_LEANGTH*2 ,0, SEASON_LEANGTH) / SEASON_LEANGTH;
+	float SpringTime = clamp(YearLoop - SEASON_LEANGTH*3 ,0, SEASON_LEANGTH) / SEASON_LEANGTH;
 
 	// colors for things
 	vec4 SummerCol = texture(leavesLUT, vec2(0.251, 0.0));
@@ -103,13 +109,13 @@ vec4 getStanderdSeasonColor( int worldDay ){
 vec4 getSpruceSeasonColor( int worldDay ){
 
 	// loop the year. multiply the season length by the 4 seasons to create a years time.
-	float YearLoop = mod(worldDay, SeasonLength * 4);
+	float YearLoop = mod(worldDay, SEASON_LEANGTH * 4);
 
 	// the time schedule for each season
-	float SummerTime = clamp(YearLoop                  ,0, SeasonLength) / SeasonLength;
-	float AutumnTime = clamp(YearLoop - SeasonLength   ,0, SeasonLength) / SeasonLength;
-	float WinterTime = clamp(YearLoop - SeasonLength*2 ,0, SeasonLength) / SeasonLength;
-	float SpringTime = clamp(YearLoop - SeasonLength*3 ,0, SeasonLength) / SeasonLength;
+	float SummerTime = clamp(YearLoop                  ,0, SEASON_LEANGTH) / SEASON_LEANGTH;
+	float AutumnTime = clamp(YearLoop - SEASON_LEANGTH   ,0, SEASON_LEANGTH) / SEASON_LEANGTH;
+	float WinterTime = clamp(YearLoop - SEASON_LEANGTH*2 ,0, SEASON_LEANGTH) / SEASON_LEANGTH;
+	float SpringTime = clamp(YearLoop - SEASON_LEANGTH*3 ,0, SEASON_LEANGTH) / SEASON_LEANGTH;
 
 	// colors for things
 	vec4 SummerCol = texture(leavesLUT, vec2(0.251, 0.9));
@@ -130,12 +136,14 @@ vec4 getSpruceSeasonColor( int worldDay ){
 void main(){
 
     vec4 mixedColor = Color;
+	#ifdef SEASONS
     if (BlockID == 30.0){
         mixedColor = mix(Color, getStanderdSeasonColor(worldDay), 0.8);
     }
     if (BlockID == 40.0){
         mixedColor = mix(Color, getSpruceSeasonColor(worldDay), 0.8);
     }
+	#endif
 
     vec4 Albedo = texture2D(texture, TexCoords) * mixedColor;
     /* DRAWBUFFERS:0123 */

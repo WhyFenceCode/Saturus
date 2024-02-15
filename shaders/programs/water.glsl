@@ -1,7 +1,10 @@
 //Vertex Shader Only//
 /////////////////////
+#define WAVES
+
 #ifdef VERTEX_SHADER
 
+#ifdef WAVES
 varying vec2 TexCoords;
 varying vec2 LightmapCoords;
 varying vec3 Normal;
@@ -39,7 +42,23 @@ void main() {
     gl_Position = clippos;
     BlockID = mc_Entity.x;
 }
+#endif
+#ifndef WAVES
 
+varying vec4 Color;
+varying float BlockID;
+varying vec2 TexCoords;
+
+in vec4 mc_Entity;
+
+void main() {
+    gl_Position = ftransform();
+    TexCoords = gl_MultiTexCoord0.st;
+    Color = gl_Color;
+    BlockID = mc_Entity.x;
+}
+
+#endif
 #endif
 
 //Fragment Shader//
@@ -47,8 +66,6 @@ void main() {
 #ifdef FRAGMENT_SHADER
 
 varying vec2 TexCoords;
-varying vec2 LightmapCoords;
-varying vec3 Normal;
 varying vec4 Color;
 
 varying float BlockID;
@@ -62,8 +79,6 @@ void main(){
     /* DRAWBUFFERS:0123 */
     // Write the values to the color textures
     gl_FragData[0] = Albedo;
-    gl_FragData[1] = vec4(Normal * 0.5f + 0.5f, 1.0f);
-    gl_FragData[2] = vec4(LightmapCoords, 0.0f, 1.0f);
     gl_FragData[3] = vec4(BlockID, 1.0, 1.0, 1.0);
 }
 
