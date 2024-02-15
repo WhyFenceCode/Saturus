@@ -43,7 +43,7 @@ uniform vec3 shadowLightPosition;
 uniform int worldTime;
 
 uniform float sunAngle;
-uniform ivec2 eyeBrightnessSmooth;
+uniform float rainStrength;
 
 const float pi = 3.1415926535;
 
@@ -105,7 +105,7 @@ void main() {
 
  float lightIntensity = mix(shadowIntensity, 0, Lightmap.x * Lightmap.x * Lightmap.x);
 
- if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0 && sunAngle < 0.5){
+ if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0 && sunAngle < 0.5 && rainStrength < 0.5){
      finalColor = mix(finalColor, vec4(0.071, 0.0, 0.188, 1.0), lightIntensity/1.8); // Shadow color is purple
  }else if (depth != 1.0 && texture2D(colortex3, TexCoords).r != 10.0){
     finalColor = mix(finalColor, vec4(0.071, 0.0, 0.188, 1.0), 1/1.8); // Night color is purple
