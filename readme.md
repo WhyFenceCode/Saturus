@@ -1,0 +1,2 @@
+<p align="center"><img src="https://socialify.git.ci/WhyFenceCode/Saturus/image?font=Inter&amp;forks=1&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Signal&amp;pulls=1&amp;stargazers=1&amp;theme=Light" alt="project-image"></p>
+<img src="https://raw.githubusercontent.com/WhyFenceCode/Saturus/942d715083acdf07ce83b90ccb612456c9f85b00/images/cherryblossom.png" alt="project-screenshot" width="400" height="400/">
