@@ -1,6 +1,6 @@
 //Vertex Shader Only//
 /////////////////////
-#define WAVES
+// #define WAVES
 
 #ifdef VERTEX_SHADER
 
