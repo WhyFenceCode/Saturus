@@ -29,7 +29,7 @@ void main() {
     Color = gl_Color;
     BlockID = mc_Entity.x;
 	#ifdef WAVING_LEAVES
-    if (mc_Entity.x == 30.0 || mc_Entity.x == 40.0 || mc_Entity.x == 50.0 || mc_Entity.x == 60){
+    if (int(mc_Entity.x) == 30 || int(mc_Entity.x) == 40 || int(mc_Entity.x) == 50 || int(mc_Entity.x) == 60){
         vec3 viewpos = (gl_ModelViewMatrix * gl_Vertex).xyz;
         vec3 feetPlayerpos = (gbufferModelViewInverse * vec4(viewpos, 1.0)).xyz;
         vec3 worldpos = feetPlayerpos + cameraPosition;
@@ -137,10 +137,10 @@ void main(){
 
     vec4 mixedColor = Color;
 	#ifdef SEASONS
-    if (BlockID == 30.0){
+    if (int(BlockID) == 30){
         mixedColor = mix(Color, getStanderdSeasonColor(worldDay), 0.8);
     }
-    if (BlockID == 40.0){
+    if (int(BlockID) == 40){
         mixedColor = mix(Color, getSpruceSeasonColor(worldDay), 0.8);
     }
 	#endif
