@@ -8,17 +8,17 @@ value.SATU.2=§cWhyFencePost
 value.SATU.3=§dWhyFencePost
 value.SATU.4=§eWhyFencePost
 value.SATU.5=§fWhyFencePost
-option.CMPR.comment=Saturus is a labour of love!
+option.CMPR.comment=Saturus is a labour of love! Please Report any and all bugs/issues on the github: 
 
 #VERSION
-option.VERSION=InDev
+option.VERSION=Beta
 value.VERSION.0=§b1.1.0
 value.VERSION.1=§b1.1.0
 value.VERSION.2=§b1.1.0
 value.VERSION.3=§b1.1.0
 value.VERSION.4=§b1.1.0
 value.VERSION.5=§b1.1.0
-option.VERSION.comment=Current Version
+option.VERSION.comment=§dCAUTION: §fThis Shader is in open beta. Stuff may not work as expected and may crash. Some settings are disabled by default as they are experimental.
 
 
 #Screens
