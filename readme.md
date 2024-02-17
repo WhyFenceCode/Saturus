@@ -24,7 +24,7 @@
 <h2 align="center">Install</h2>
 
 * Step 1: Download As Zip
-* Step 2:2: Extract the zip
+* Step 2: Extract the zip
 * Step 3: Move the subfolder to your shaders folder
 * Step 4: Start Minecraft
 * Step 5: Select the shader
