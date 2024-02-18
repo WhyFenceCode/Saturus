@@ -27,9 +27,9 @@ void main() {
     LightmapCoords = LightmapCoords * (16.0/15.0) - (16.0/15.0/32.0);
     Normal = gl_NormalMatrix * gl_Normal;
     Color = gl_Color;
-    BlockID = mc_Entity.x;
+    BlockID = int(mc_Entity.x + 0.5);
 	#ifdef WAVING_LEAVES
-    if (int(mc_Entity.x) == 30 || int(mc_Entity.x) == 40 || int(mc_Entity.x) == 50 || int(mc_Entity.x) == 60){
+    if (BlockID == 30 || BlockID == 40 || BlockID == 50 || BlockID == 60){
         vec3 viewpos = (gl_ModelViewMatrix * gl_Vertex).xyz;
         vec3 feetPlayerpos = (gbufferModelViewInverse * vec4(viewpos, 1.0)).xyz;
         vec3 worldpos = feetPlayerpos + cameraPosition;
@@ -137,10 +137,10 @@ void main(){
 
     vec4 mixedColor = Color;
 	#ifdef SEASONS
-    if (int(BlockID) == 30){
+    if (BlockID == 30){
         mixedColor = mix(Color, getStanderdSeasonColor(worldDay), 0.8);
     }
-    if (int(BlockID) == 40){
+    if (BlockID == 40){
         mixedColor = mix(Color, getSpruceSeasonColor(worldDay), 0.8);
     }
 	#endif
