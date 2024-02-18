@@ -47,7 +47,7 @@ void main() {
 #ifndef WAVES
 
 varying vec4 Color;
-varying int BlockID;
+out int BlockID;
 varying vec2 TexCoords;
 
 in vec4 mc_Entity;
@@ -69,7 +69,7 @@ void main() {
 varying vec2 TexCoords;
 varying vec4 Color;
 
-varying float BlockID;
+in float BlockID;
 
 // The texture atlas
 uniform sampler2D texture;
