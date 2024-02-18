@@ -1,3 +1,3 @@
-float generateWave(float x, float y, float time) {
+float generateWave(vec3 pos, float time) {
   return 0.0;
 }
