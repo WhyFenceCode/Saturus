@@ -17,7 +17,7 @@ uniform vec3 cameraPosition;
 uniform mat4 gbufferModelView;
 uniform mat4 gbufferModelViewInverse;
 
-in vec4 mc_Entity;
+attribute vec4 mc_Entity;
 
 void main() {
     vec3 viewpos = (gl_ModelViewMatrix * gl_Vertex).xyz;

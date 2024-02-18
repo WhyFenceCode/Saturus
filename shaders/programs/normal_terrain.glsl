@@ -16,7 +16,7 @@ uniform vec3 cameraPosition;
 uniform mat4 gbufferModelView;
 uniform mat4 gbufferModelViewInverse;
 
-in vec3 mc_Entity;
+attribute vec4 mc_Entity;
 
 void main() {
     // Assign values to varying variables
