@@ -35,7 +35,7 @@ float sinSixWave(vec3 pos, float freq, float amp, float time) {
 float fbm(vec3 x, int octaves, float lacunarity, float gain) {
    float v = 0.0;
    float a = 0.5;
-   vec3 shift = vec3(100.0);
+   vec3 shift = vec3(100);
    for (int i = 0; i < octaves; ++i) {
        v += a * noise(x);
        x = x * lacunarity + shift;
@@ -48,7 +48,7 @@ float generateWave(float x, float y, float time) {
   vec3 pos = vec3(x, y, time);
   
   // Base layer
-  float z = fbm(pos, 4.0, 2.0, 0.5);
+  float z = fbm(pos, 4, 2.0, 0.5);
   
   // Add sine wave
   z += sineWave(pos, 1.0, 1.0, time);
@@ -57,7 +57,7 @@ float generateWave(float x, float y, float time) {
   z += sinSixWave(pos, 1.0, 1.0, time);
   
   // Add another layer of noise with higher frequency and amplitude
-  z += fbm(pos * 2.0, 8.0, 4.0, 0.25);
+  z += fbm(pos * 2.0, 8, 4.0, 0.25);
   
   // Add another sine wave with higher frequency and amplitude
   z += sineWave(pos * 2.0, 2.0, 2.0, time);
