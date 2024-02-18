@@ -12,12 +12,12 @@ option.CMPR.comment=Saturus is a labour of love! Please Report any and all bugs/
 
 #VERSION
 option.VERSION=Beta
-value.VERSION.0=§b1.1.3
-value.VERSION.1=§b1.1.3
-value.VERSION.2=§b1.1.3
-value.VERSION.3=§b1.1.3
-value.VERSION.4=§b1.1.3
-value.VERSION.5=§b1.1.3
+value.VERSION.0=§b1.1.4
+value.VERSION.1=§b1.1.4
+value.VERSION.2=§b1.1.4
+value.VERSION.3=§b1.1.4
+value.VERSION.4=§b1.1.4
+value.VERSION.5=§b1.1.4
 option.VERSION.comment=§dCAUTION: §fThis Shader is in open beta. Stuff may not work as expected and may crash. Some settings are disabled by default as they are experimental.
 
 
