@@ -8,7 +8,7 @@ varying vec2 TexCoords;
 varying vec2 LightmapCoords;
 varying vec3 Normal;
 varying vec4 Color;
-varying float BlockID;
+varying int BlockID;
 
 uniform float sunAngle;
 uniform float frameTimeCounter;
@@ -67,7 +67,7 @@ varying vec2 LightmapCoords;
 varying vec3 Normal;
 varying vec4 Color;
 
-varying float BlockID;
+varying int BlockID;
 
 // The texture atlas
 uniform sampler2D texture;

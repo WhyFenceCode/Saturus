@@ -9,7 +9,7 @@ varying vec2 TexCoords;
 varying vec2 LightmapCoords;
 varying vec3 Normal;
 varying vec4 Color;
-varying float BlockID;
+varying int BlockID;
 
 uniform float frameTimeCounter;
 uniform float sunAngle;
@@ -47,7 +47,7 @@ void main() {
 #ifndef WAVES
 
 varying vec4 Color;
-varying float BlockID;
+varying int BlockID;
 varying vec2 TexCoords;
 
 in vec4 mc_Entity;
