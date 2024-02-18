@@ -9,7 +9,8 @@ varying vec2 TexCoords;
 varying vec2 LightmapCoords;
 varying vec3 Normal;
 varying vec4 Color;
-varying int BlockID;
+
+flat out int BlockID;
 
 uniform float frameTimeCounter;
 uniform float sunAngle;
@@ -41,13 +42,13 @@ void main() {
     Normal = gl_NormalMatrix * gl_Normal;
     Color = gl_Color;
     gl_Position = clippos;
-    BlockID = mc_Entity.x;
+    BlockID = int(mc_Entity.x + 0.5);
 }
 #endif
 #ifndef WAVES
 
 varying vec4 Color;
-out int BlockID;
+flat out int BlockID;
 varying vec2 TexCoords;
 
 in vec4 mc_Entity;
@@ -56,7 +57,7 @@ void main() {
     gl_Position = ftransform();
     TexCoords = gl_MultiTexCoord0.st;
     Color = gl_Color;
-    BlockID = mc_Entity.x;
+    BlockID = int(mc_Entity.x + 0.5);
 }
 
 #endif
@@ -69,7 +70,7 @@ void main() {
 varying vec2 TexCoords;
 varying vec4 Color;
 
-in float BlockID;
+flat in int BlockID;
 
 // The texture atlas
 uniform sampler2D texture;
