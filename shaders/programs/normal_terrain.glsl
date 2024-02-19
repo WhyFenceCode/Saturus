@@ -1,6 +1,6 @@
 //Vertex Shader Only//
 /////////////////////
-// #define WAVING_LEAVES  // Waving Leaves
+#define WAVING_LEAVES  // Waving Leaves
 
 #ifdef VERTEX_SHADER
 
