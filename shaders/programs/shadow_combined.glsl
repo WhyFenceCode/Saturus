@@ -120,14 +120,14 @@ void main() {
  float lightIntensity = mix(shadowIntensity, 0, Lightmap.x * Lightmap.x * Lightmap.x);
 
  #ifdef SHADOWS
- if (depth != 1.0 && int(texture2D(colortex3, TexCoords).r) != 10 && sunAngle < 0.5 && rainStrength < 0.5){
+ if (depth != 1.0 && int(texture2D(colortex3, TexCoords).r + 0.5) != 1 && sunAngle < 0.5 && rainStrength < 0.5){
      finalColor = mix(finalColor, vec4(SHADOW_COLOR_R, SHADOW_COLOR_G, SHADOW_COLOR_B, 1.0), lightIntensity/SHADOW_AMBIENCE); // Shadow color is purple/blue
- }else if (depth != 1.0 && int(texture2D(colortex3, TexCoords).r) != 10){
+ }else if (depth != 1.0 && int(texture2D(colortex3, TexCoords).r + 0.5) != 1){
     finalColor = mix(finalColor, vec4(SHADOW_COLOR_R, SHADOW_COLOR_G, SHADOW_COLOR_B, 1.0), 1/SHADOW_AMBIENCE); // Night color is purple/blue
  }
- if (depth != 1.0 && int(texture2D(colortex3, TexCoords).r) != 10) finalColor = mix(finalColor, vec4(TORCH_COLOR_R, TORCH_COLOR_G, TORCH_COLOR_B, 1.0), Lightmap.x * Lightmap.x * Lightmap.x / 15); // Torch Light is orange
+ if (depth != 1.0 && int(texture2D(colortex3, TexCoords).r + 0.5) != 1) finalColor = mix(finalColor, vec4(TORCH_COLOR_R, TORCH_COLOR_G, TORCH_COLOR_B, 1.0), Lightmap.x * Lightmap.x * Lightmap.x / 15); // Torch Light is orange
 
- if (depth != 1.0 && int(texture2D(colortex3, TexCoords).r) != 10 && sunAngle < 0.5) finalColor = finalColor + (texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.0)) *((1 - lightIntensity) * texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.9)).r)); //Add Sunlight
+ if (depth != 1.0 && int(texture2D(colortex3, TexCoords).r + 0.5) != 1 && sunAngle < 0.5) finalColor = finalColor + (texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.0)) *((1 - lightIntensity) * texture(sunlightLUT, vec2(skyBrightness(worldTime), 0.9)).r)); //Add Sunlight
  #endif
  gl_FragColor = finalColor;
 }

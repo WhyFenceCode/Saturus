@@ -85,7 +85,7 @@ void main(){
     /* DRAWBUFFERS:0123 */
     // Write the values to the color textures
     gl_FragData[0] = Albedo;
-    gl_FragData[3] = vec4(float(BlockID), 1.0, 1.0, 1.0);
+    gl_FragData[3] = vec4(1, 1.0, 1.0, 1.0);
 }
 
 #endif
