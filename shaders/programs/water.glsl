@@ -27,7 +27,7 @@ void main() {
     vec3 worldpos = feetPlayerpos + cameraPosition;
 
     //Make Waves
-    worldpos = generateWave(worldpos, frameTimeCounter/800 * 300.0);
+    worldpos = generateWaveY(worldpos, frameTimeCounter/800 * 300.0);
 
     //Lower To avoid interferace
     worldpos.y -= 0.03;
