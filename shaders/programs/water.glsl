@@ -27,7 +27,7 @@ void main() {
 
     worldpos = generateWave(worldpos, frameTimeCounter/800 * 300.0);
 
-    worldpos.y -= 0.1;
+    worldpos.y -= 0.03;
 
     vec3 feetPlayerpos2 = worldpos - cameraPosition;
     vec3 viewpos2 = (gbufferModelView * vec4(feetPlayerpos2, 1.0)).xyz;
