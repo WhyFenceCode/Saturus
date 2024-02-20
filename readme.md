@@ -11,7 +11,7 @@
 * Very fast and lightweight
 
 * Custom penumbra shadows with a lot of settings
-* Colord lighting based on daytime
+* Colored lighting based on daytime
 * Settings for torch light color
 * Better weather, with lots of settings to play around with
 * Custom fog for the overworld
