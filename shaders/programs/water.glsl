@@ -21,14 +21,18 @@ uniform mat4 gbufferModelViewInverse;
 attribute vec4 mc_Entity;
 
 void main() {
+    //Transform To Worldspace
     vec3 viewpos = (gl_ModelViewMatrix * gl_Vertex).xyz;
     vec3 feetPlayerpos = (gbufferModelViewInverse * vec4(viewpos, 1.0)).xyz;
     vec3 worldpos = feetPlayerpos + cameraPosition;
 
+    //Make Waves
     worldpos = generateWave(worldpos, frameTimeCounter/800 * 300.0);
 
+    //Lower To avoid interferace
     worldpos.y -= 0.03;
 
+    //Transform Back too clipspace for glTransform
     vec3 feetPlayerpos2 = worldpos - cameraPosition;
     vec3 viewpos2 = (gbufferModelView * vec4(feetPlayerpos2, 1.0)).xyz;
     vec4 clippos = gl_ProjectionMatrix * vec4(viewpos2, 1.0);

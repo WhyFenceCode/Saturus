@@ -1,6 +1,7 @@
 //Vertex Shader Only//
 /////////////////////
 #define WAVING_LEAVES  // Waving Leaves
+#define WAVING_FOLIAGE
 
 #ifdef VERTEX_SHADER
 
@@ -29,27 +30,66 @@ void main() {
     Normal = gl_NormalMatrix * gl_Normal;
     Color = gl_Color;
     BlockID = int(mc_Entity.x + 0.5);
+
+	// Waving Leaves
 	#ifdef WAVING_LEAVES
-    if (BlockID == 30 || BlockID == 40 || BlockID == 50 || BlockID == 60){
+    if (BlockID == 30 || BlockID == 40 || BlockID == 60){
+		// Transform to world space
         vec3 viewpos = (gl_ModelViewMatrix * gl_Vertex).xyz;
         vec3 feetPlayerpos = (gbufferModelViewInverse * vec4(viewpos, 1.0)).xyz;
         vec3 worldpos = feetPlayerpos + cameraPosition;
 
+		// Make Leaves Wave
         worldpos = generateWave(worldpos, frameTimeCounter/800.0 * 200.0);
 
-        worldpos.y -= 0.0001;
-
+		// Transform to clip space for glTransform
         vec3 feetPlayerpos2 = worldpos - cameraPosition;
         vec3 viewpos2 = (gbufferModelView * vec4(feetPlayerpos2, 1.0)).xyz;
         vec4 clippos = gl_ProjectionMatrix * vec4(viewpos2, 1.0);
 
         gl_Position = clippos;
-    } else {
-        gl_Position = ftransform();
-    }
+	}
+	#ifdef WAVING_FOLIAGE
+	if (BlockID != 30 && BlockID != 40 && BlockID != 50 && BlockID != 60){
+		gl_Position = ftransform();
+	}
 	#endif
+	#ifndef WAVING_FOLIAGE
+	if (BlockID != 30 && BlockID != 40 && BlockID != 60){
+		gl_Position = ftransform();
+	}
+	#endif
+	#endif
+
+	// Waving Foliage
+	#ifdef WAVING_FOLIAGE
+    if (BlockID == 50){
+		// Transform to world space
+        vec3 viewpos = (gl_ModelViewMatrix * gl_Vertex).xyz;
+        vec3 feetPlayerpos = (gbufferModelViewInverse * vec4(viewpos, 1.0)).xyz;
+        vec3 worldpos = feetPlayerpos + cameraPosition;
+
+		// Make Leaves Wave
+        worldpos = generateWave(worldpos, frameTimeCounter/800.0 * 200.0);
+
+		// Transform to clip space for glTransform
+        vec3 feetPlayerpos2 = worldpos - cameraPosition;
+        vec3 viewpos2 = (gbufferModelView * vec4(feetPlayerpos2, 1.0)).xyz;
+        vec4 clippos = gl_ProjectionMatrix * vec4(viewpos2, 1.0);
+
+        gl_Position = clippos;
+	}
 	#ifndef WAVING_LEAVES
-	gl_Position = ftransform();
+	if (BlockID != 50){
+		gl_Position = ftransform();
+	}
+	#endif
+	#endif
+
+	#ifndef WAVING_LEAVES
+	#ifndef WAVING_FOLIAGE
+		gl_Position = ftransform();
+	#endif
 	#endif
 }
 
@@ -136,6 +176,8 @@ vec4 getSpruceSeasonColor( int worldDay ){
 void main(){
 
     vec4 mixedColor = Color;
+
+	// If seasons, mix
 	#ifdef SEASONS
     if (BlockID == 30){
         mixedColor = mix(Color, getStanderdSeasonColor(worldDay), 0.8);

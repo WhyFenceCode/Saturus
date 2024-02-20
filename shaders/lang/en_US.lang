@@ -177,6 +177,9 @@ option.RAIN_COLOR_A.comment=Alpha (Transperancy) channel of rain color.
 option.WAVING_LEAVES=Waving Leaves
 option.WAVING_LEAVES.comment=On/Off for leaf waving.
 
+option.WAVING_FOLIAGE=Waving Foliage
+option.WAVING_FOLIAGE.comment=On/Off for foliage waving.
+
 option.WAVES=Water Waves
 option.WAVES.comment=§cEXPERIMENTAL - §fOn/Off for water waving.
 
