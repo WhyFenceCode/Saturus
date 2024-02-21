@@ -21,6 +21,8 @@ uniform float near;
 
 uniform int worldTime;
 
+uniform int isEyeInWater;
+
 const float pi = 3.1415926535;
 
 float skyBrightness(int time) {
@@ -49,6 +51,8 @@ float beerLambertVisibility(float concentration, float pathLength) {
 void main() {
     vec4 fog = vec4(skyColor, 1.0);
 
+    vec4 waterfog = vec4(0, 0.2, 0.26, 0.6);
+
     vec4 baseColor = texture(colortex0, TexCoords);
     float depth = texture(depthtex0, TexCoords).r;
 
@@ -61,6 +65,10 @@ void main() {
     if (depth != 1.0) fogstreangth = mix(2.1, fogstreangth, skyBrightness(worldTime));
 
     vec4 finalColor = mix(baseColor, fog, 1-beerLambertVisibility(fogstreangth, lineardeapth));
+
+    if (isEyeInWater == 1){
+        finalColor = mix(finalColor, waterfog, 1-beerLambertVisibility(9.0, lineardeapth));
+    }
 
     gl_FragColor = finalColor;
 }

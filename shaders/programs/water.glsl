@@ -81,7 +81,15 @@ uniform sampler2D texture;
 
 void main(){
 
-    vec4 Albedo = texture2D(texture, TexCoords) * Color;
+    vec4 darkwater = vec4(0, 0.2, 0.26, 0.7);
+    vec4 lightwater = vec4(0.8705, 0.9686, 1, 0.7);
+
+    vec4 waterColor = mix(darkwater, lightwater, 0.8);
+
+    vec4 baseColor = vec4(0, 0, 0, 0);
+    baseColor = mix(Color, waterColor, 0.6);
+
+    vec4 Albedo = texture2D(texture, TexCoords) * baseColor;
     /* DRAWBUFFERS:0123 */
     // Write the values to the color textures
     gl_FragData[0] = Albedo;
